@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 const Navbar = ({title}) =>  {
     
         return (
-            <nav className="navbar bg-primary">
+            <nav className="navbar bg-dark">
                 <h1>
                 <i className="icon"> <siIcons.SiGithub/> </i>
                     {title} </h1>
