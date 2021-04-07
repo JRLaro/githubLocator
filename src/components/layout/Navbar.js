@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import * as siIcons from 'react-icons/si'
 import PropTypes from 'prop-types'
 
@@ -16,11 +16,9 @@ const Navbar = ({title}) =>  {
 }
 Navbar.defaultProps = {
     title: 'GitHub Finder',
-    icon: <siIcons.SiGithub/>
 }
 
 Navbar.propTypes = {
     title: PropTypes.string.isRequired,
-    icon: PropTypes.string.isRequired
 }
 export default Navbar
