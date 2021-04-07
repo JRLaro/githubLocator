@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import Navbar from "./components/layout/Navbar";
+import User from "./components/users/User";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+//functional Component
+
+// function App() {
+//   return (
+//     <div className="App">
+//       <h1> GitHub Finder</h1>
+//     </div>
+//   );
+// }
+
+// Class Component
+
+class App extends React.Component {
+  render() {
+    return (
+      <div className="App">
+        <Navbar />
+        <div className="container">
+        <User />
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
