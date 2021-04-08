@@ -6,15 +6,19 @@ import Users from "./components/users/Users";
 import axios from "axios";
 import Search from "./components/users/Search";
 import Alert from "./components/layout/Alert";
-import About from "./components/pages/About"
+import About from "./components/pages/About";
+import User from "./components/users/User";
 
 class App extends Component {
   state = {
     users: [],
+    user: {},
+    repos: [],
     loading: false,
     alert: null,
   };
 
+  //Search users
   searchUsers = async (text) => {
     this.setState({ loading: true });
 
@@ -23,6 +27,29 @@ class App extends Component {
     );
 
     this.setState({ users: res.data.items, loading: false });
+  };
+
+  // get single user
+
+  getUser = async (username) => {
+    this.setState({ loading: true });
+
+    const res = await axios.get(
+      `https://api.github.com/users/${username}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+    );
+
+    this.setState({ user: res.data, loading: false });
+  };
+
+  //user repo
+  getRepo = async (username) => {
+    this.setState({ loading: true });
+
+    const res = await axios.get(
+      `https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+    );
+
+    this.setState({ repos: res.data, loading: false });
   };
 
   //clear Users from State
@@ -36,7 +63,7 @@ class App extends Component {
   };
 
   render() {
-    const { users, loading, alert } = this.state;
+    const { users, user, loading, alert, repos } = this.state;
 
     return (
       <Router>
@@ -60,11 +87,21 @@ class App extends Component {
                   </Fragment>
                 )}
               />
+              <Route exact path="/about" component={About} />
               <Route
-              exact
-                path='/about'
-                component={About}
-           />
+                exact
+                path="/user/:login"
+                render={(props) => (
+                  <User
+                    {...props}
+                    getUser={this.getUser}
+                    getRepo={this.getRepo}
+                    user={user}
+                    repos={repos}
+                    loading={loading}
+                  />
+                )}
+              />
             </Switch>
           </div>
         </div>
