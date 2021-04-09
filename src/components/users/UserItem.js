@@ -2,13 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Link} from 'react-router-dom'
 
-function UserItem({ users: { login, avatar_url, html_url } }) {
+function UserItem({ user: { login, avatar_url, html_url } }) {
   return (
     <div className="card text-center">
       <img
         src={avatar_url}
         alt="logo"
         className="round-img"
+        id="text-center"
         style={{ width: 60 }}
       />
       <h3>{login}</h3>
@@ -23,7 +24,7 @@ function UserItem({ users: { login, avatar_url, html_url } }) {
 }
 
 UserItem.propTypes = {
-  users: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
 };
 
 export default UserItem;

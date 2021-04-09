@@ -90,6 +90,10 @@ img {
   text-align: center;
 }
 
+#text-center {
+  text-align: center;
+}
+
 .text-right {
   text-align: right;
 }
@@ -379,6 +383,10 @@ table th {
 
 .navbar .welcome span {
   margin-right: 0.6rem;
+}
+
+#icon {
+  font-size: 35px;
 }
 
 /* Mobile Styles */

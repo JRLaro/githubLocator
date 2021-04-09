@@ -1,14 +1,19 @@
-import React, { Fragment, useEffect } from "react";
-import PropTypes from "prop-types";
+import React, { Fragment, useEffect, useContext } from "react";
 import Repos from "../repos/Repos";
 import { Spinner } from "../layout/Spinner";
 import { Link } from "react-router-dom";
+import GithubContext from "../../context/github/githubContext";
 
-const User = ({ user, loading, getRepo, getUser, repos, match }) => {
+const User = ({ match }) => {
+  const githubContext = useContext(GithubContext);
+
+  const { user, loading, getUser, getRepo, repos } = githubContext;
+
   useEffect(() => {
     getUser(match.params.login);
     getRepo(match.params.login);
-  },[]);
+    // eslint-disable-next-line
+  }, []);
 
   const {
     name,
@@ -32,7 +37,7 @@ const User = ({ user, loading, getRepo, getUser, repos, match }) => {
   return (
     <Fragment>
       <Link to="/" className="btn btn-light">
-        Back
+        Back to Search
       </Link>
       Hireable: {""}
       {hireable ? (
@@ -56,7 +61,11 @@ const User = ({ user, loading, getRepo, getUser, repos, match }) => {
             <Fragment>
               <h3>Bio:</h3>
               <p>{bio}</p>
-              <a href={html_url} target="_blank" className="btn btn-dark my-1">
+              <a
+                href={html_url}
+                target="_blank"
+                rel="noreferrer"
+                className="btn btn-dark my-1">
                 Visit Github
               </a>
               <ul>
@@ -98,14 +107,6 @@ const User = ({ user, loading, getRepo, getUser, repos, match }) => {
       <Repos repos={repos} />
     </Fragment>
   );
-};
-
-User.propTypes = {
-  loading: PropTypes.bool,
-  user: PropTypes.object.isRequired,
-  repos: PropTypes.array.isRequired,
-  getUser: PropTypes.func.isRequired,
-  getRepo: PropTypes.func.isRequired,
 };
 
 export default User;

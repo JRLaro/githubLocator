@@ -6,16 +6,20 @@ import { Link } from "react-router-dom";
 const Navbar = ({ title }) => {
   return (
     <nav className="navbar bg-dark">
-      <h1>
-        <i className="icon">
-          <siIcons.SiGithub className="mb-2" />
-        </i>
-        {title}
-          </h1>
-          <ul>
-              <li><Link to='/'> Home </Link></li>
-              <li><Link to='/about'>About</Link></li>
-          </ul>
+      <a href="https://github.com/" target="_blank">
+        <span>
+          <siIcons.SiGithub id="icon" />
+        </span>
+      </a>
+      <h1>{title}</h1>
+      <ul>
+        <li>
+          <Link to="/"> Home </Link>
+        </li>
+        <li>
+          <Link to="/about">About</Link>
+        </li>
+      </ul>
     </nav>
   );
 };
