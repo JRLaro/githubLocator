@@ -30,7 +30,7 @@ const Search = () => {
           <p>Enter the name of the user you are searching for.</p>
         </>
       ) : (
-        <h1>Here is what we were able to find</h1>
+        <h1>Here is what we were able to find!</h1>
       )}
 
       <form onSubmit={onSubmit} className="form">

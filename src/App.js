@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Redirect, Switch, Route } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/layout/Navbar";
 import Home from "./components/pages/Home";
@@ -15,11 +15,12 @@ const App = () => {
     <GithubState>
       <AlertState>
         <Router>
-          <div className="App">
+          <div className="App2">
             <Navbar />
             <div className="container">
               <Alert />
               <Switch>
+              <Redirect from="/githubLocator" to="/" />
                 <Route exact path="/" component={Home} />
                 <Route path="/about" component={About} />
                 <Route path="/user/:login" component={User} />
