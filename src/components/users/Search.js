@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import GithubContext from "../../context/github/githubContext";
-import AlertContext from '../../context/alert/alertContext'
+import AlertContext from "../../context/alert/alertContext";
 
 const Search = () => {
   const githubContext = useContext(GithubContext);
@@ -24,14 +24,15 @@ const Search = () => {
 
   return (
     <div>
-      
       {!githubContext.users.length > 0 ? (
         <>
-        <h1>Let's get Started!</h1>
+          <h1>Let's get Started!</h1>
           <p>Enter the name of the user you are searching for.</p>
-          </>
-      ):(<h1>Here is what we were able to find</h1>)}
-      
+        </>
+      ) : (
+        <h1>Here is what we were able to find</h1>
+      )}
+
       <form onSubmit={onSubmit} className="form">
         <input
           type="text"
@@ -57,6 +58,5 @@ const Search = () => {
     </div>
   );
 };
-
 
 export default Search;
